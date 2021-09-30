@@ -1,0 +1,18 @@
+---
+
+- name: Remove old DST Root CA X3
+  hosts: all
+  tasks:
+    - name: comment DST Root CA X3
+      lineinfile:
+        path: /etc/ca-certificates.conf
+        regexp: '^mozilla/DST_Root_CA_X3\.crt$'
+        line: '!mozilla/DST_Root_CA_X3.crt'
+        owner: root
+        group: root
+        mode: 0644
+      register: __state
+
+    - name: update ca-certificates if changed
+      command: /usr/sbin/update-ca-certificates
+      when: __state.changed
