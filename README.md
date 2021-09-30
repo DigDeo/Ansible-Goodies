@@ -1,2 +1,2 @@
 # Ansible-Goodies
-Some Ansible stuff to process simple actions
+Some Ansible stuff to process simples actions
